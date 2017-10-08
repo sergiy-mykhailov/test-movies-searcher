@@ -1,0 +1,15 @@
+{
+  "img": {
+    "images_uri": "https://image.tmdb.org/t/p/",
+    "poster_size": "w300"
+  },
+  "api": {
+    "v3": {
+      "api_key": "066766dc3590ed6fdb2137c2ef3a5eeb",
+      "base_uri": "https://api.themoviedb.org/3/"
+    },
+    "v4": {
+      "api_key": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNjY3NjZkYzM1OTBlZDZmZGIyMTM3YzJlZjNhNWVlYiIsInN1YiI6IjU5ZDhkYjY0OTI1MTQxMjUyYzAyNjRmMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.U0PVvMbsj0irRd4JM5kABIco7cQxhMUhIR5Z5SK5Si8"
+    }
+  }
+}
