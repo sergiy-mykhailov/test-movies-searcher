@@ -30,7 +30,7 @@ function copyDir(src, dst) {
 
                 fs.copyFile(fileSrc, fileDst, (err) => {
                     if (err) console.error(err);
-                    console.log(` - file copied to: ${fileDst}`);
+                    console.info(` - file copied to: ${fileDst}`);
                 });
             }
         });

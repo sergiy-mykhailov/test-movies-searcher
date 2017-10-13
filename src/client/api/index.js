@@ -2,52 +2,26 @@
 import config from './config.json';
 import theMovieDb from 'themoviedb-javascript-library';
 
-import {
-    getTopRated, getTopRatedSuccess, getTopRatedFail,
-    getMovieDetails, getMovieDetailsSuccess, getMovieDetailsFail
-} from '../actions/index'
-
 const api_key       = config.api.v3.api_key;
 
 theMovieDb.common.api_key       = api_key;
 theMovieDb.common.base_uri      = config.api.v3.base_uri;
 theMovieDb.common.images_uri    = config.img.images_uri;
 
-export default {
+export const getImgUri = () => {
+    return config.img.images_uri + config.img.poster_size;
+};
 
-    getImgUri () {
-        return config.img.images_uri + config.img.poster_size;
-    },
+export const getTopRatedMovies = () => {
 
-    getTopRated (dispatch) {
+    return new Promise((resolve, reject) => {
+        theMovieDb.movies.getTopRated({ api_key }, resolve, reject);
+    });
+};
 
-        dispatch(getTopRated());
+export const getMovieById = (id) => {
 
-        const successCB = (res) => {
-            const data = JSON.parse(res);
-            dispatch(getTopRatedSuccess(data.results));
-        };
-        const errorCB = (res) => {
-            dispatch(getTopRatedFail(JSON.parse(res)));
-        };
-
-        theMovieDb.movies.getTopRated({ api_key }, successCB, errorCB);
-
-    },
-
-    getMovieById (dispatch, id) {
-
-        dispatch(getMovieDetails());
-
-        const successCB = (res) => {
-            const data = JSON.parse(res);
-            dispatch(getMovieDetailsSuccess(data));
-        };
-        const errorCB = (res) => {
-            dispatch(getMovieDetailsFail(JSON.parse(res)));
-        };
-
-        theMovieDb.movies.getById({ api_key, id }, successCB, errorCB);
-
-    }
-}
+    return new Promise((resolve, reject) => {
+        theMovieDb.movies.getById({ api_key, id }, resolve, reject);
+    });
+};

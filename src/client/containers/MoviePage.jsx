@@ -3,11 +3,12 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 import MoviePage from '../components/MoviePage.jsx';
-import api from '../api';
+import { getImgUri, getMovieById } from '../api';
+import { getMovieDetails, getMovieDetailsSuccess, getMovieDetailsFail } from '../actions'
 
-const imgUri = api.getImgUri();
+const imgUri = getImgUri();
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
 
     return {
         movieDetails:   state.movieDetails.data,
@@ -19,7 +20,14 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
 
-    api.getMovieById(dispatch, ownProps.match.params.id);
+    dispatch(getMovieDetails());
+
+    getMovieById(ownProps.match.params.id)
+        .then(
+            (res) => dispatch(getMovieDetailsSuccess(JSON.parse(res))),
+            (err) => dispatch(getMovieDetailsFail(JSON.parse(err)))
+        );
+
     return {}
 };
 

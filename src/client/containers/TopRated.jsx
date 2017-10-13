@@ -3,9 +3,10 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 import Movies from '../components/Movies.jsx';
-import api from '../api';
+import { getImgUri, getTopRatedMovies } from '../api';
+import { getTopRated, getTopRatedSuccess, getTopRatedFail } from '../actions'
 
-const imgUri = api.getImgUri();
+const imgUri = getImgUri();
 
 const mapStateToProps = (state) => {
 
@@ -15,12 +16,19 @@ const mapStateToProps = (state) => {
         movies:     state.movies.data,
         isLoading:  state.movies.isLoading,
         imgUri:     imgUri,
-        isError:        state.error.length > 0
+        isError:    state.error.length > 0
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
-    api.getTopRated(dispatch);
+
+    dispatch(getTopRated());
+
+    getTopRatedMovies()
+        .then(
+            (res) => dispatch(getTopRatedSuccess(JSON.parse(res).results)),
+            (err) => dispatch(getTopRatedFail(JSON.parse(err)))
+        );
     return {};
 };
 
