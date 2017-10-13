@@ -4,11 +4,11 @@ const path =  require('path');
 module.exports = {
     entry: './src/index.jsx',
     output: {
-        path:       path.resolve(__dirname, 'docs/'),
-        filename:   'build/bundle.js'
+        path:       path.resolve(__dirname, 'build/public/'),
+        filename:   'js/bundle.js'
     },
     devServer: {
-        contentBase: './docs'
+        contentBase: './build'
     },
     module: {
         rules: [
