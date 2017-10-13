@@ -5,7 +5,7 @@ import theMovieDb from 'themoviedb-javascript-library';
 import {
     getTopRated, getTopRatedSuccess, getTopRatedFail,
     getMovieDetails, getMovieDetailsSuccess, getMovieDetailsFail
-} from '../actions'
+} from '../actions/index'
 
 const api_key       = config.api.v3.api_key;
 

@@ -4,7 +4,9 @@ const path =  require('path');
 
 const pathSrc = './build', pathDst = './docs';
 
-if (!fs.exists(pathDst)) fs.mkdirSync(pathDst);
+if (!fs.existsSync(pathDst)) fs.mkdirSync(pathDst);
+
+copyDir(pathSrc, pathDst);
 
 function copyDir(src, dst) {
     "use strict";
@@ -21,7 +23,7 @@ function copyDir(src, dst) {
 
             if (stats.isDirectory()) {
 
-                fs.mkdirSync(fileDst);
+                if (!fs.existsSync(fileDst)) fs.mkdirSync(fileDst);
                 copyDir(fileSrc, fileDst);
 
             } else {
@@ -34,5 +36,3 @@ function copyDir(src, dst) {
         });
     });
 }
-
-copyDir(pathSrc, pathDst);

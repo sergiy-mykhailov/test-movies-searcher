@@ -1,9 +1,9 @@
 
 import restify from 'restify';
 
-import config from './config';
-import routes from './routes';
-import * as db from './db';
+import config from './config/index';
+import routes from './routes/index';
+import * as db from './db/index';
 
 //**** Initialize Server ****
 const server = restify.createServer({
